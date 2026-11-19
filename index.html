@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Clean Girl – Il gioco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <canvas id="gl"></canvas>
+    <div id="ui"></div>
+    <div id="hud" class="hidden"></div>
+    <div id="controls" class="hidden"></div>
+    <div id="fade"></div>
+  </div>
+</div>
+<div id="rotate">
+  <div class="rot-phone"></div>
+  <p>Ruota il telefono in orizzontale per giocare</p>
+</div>
+<div id="boot-error" class="hidden"></div>
+<script>
+  (function () {
+    var box = document.getElementById('boot-error');
+    function show(msg) { box.textContent = msg; box.classList.remove('hidden'); }
+    window.addEventListener('error', function (e) { show('Errore: ' + (e.message || e.type) + (e.filename ? ' (' + e.filename.split('/').pop() + ':' + e.lineno + ')' : '')); });
+    window.addEventListener('unhandledrejection', function (e) { show('Errore: ' + (e.reason && e.reason.message || e.reason)); });
+    setTimeout(function () { if (!window.__booted) show('Il gioco non si è avviato: ricarica la pagina.'); }, 12000);
+  })();
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
